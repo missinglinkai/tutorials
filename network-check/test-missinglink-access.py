@@ -19,12 +19,12 @@ TESTS = [
         "note": "web: required, ml: required, ",
     },
     {
-        "url": "https://pypi.python.org",
-        "note": "sdk: required, This is where we check if there is a new updated package to install, if this address is not accessible self update of the SDK will not work.",
-    },
-    {
         "url": "https://missinglinkai.appspot.com",
         "note": "[web, sdk, ml], required for communicating with MissingLink backend.",
+    },
+    {
+        "url": "https://pypi.python.org",
+        "note": "sdk: required, This is where we check if there is a new updated package to install, if this address is not accessible self update of the SDK will not work.",
     },
     {
         "url": "https://www.googleapis.com",
@@ -34,14 +34,6 @@ TESTS = [
         # "url": "https://*.firebaseio.com",
         "url": "https://s-usc1c-nss-265.firebaseio.com",
         "note": "[web,required] This is where google identity toolkit API is hosted, we convert our authentication token to a token that can access firebase."
-    },
-    {
-        "url": "https://api.segment.io",
-        "note": "[web, optional]",
-    },
-    {
-        "url": "https://api.segment.io",
-        "note": "[web, optional]",
     },
     {
         "url": "https://api.segment.io",
