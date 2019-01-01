@@ -11,7 +11,7 @@ RESULTS_FNAME = 'results.txt'
 
 TESTS = [
     {
-        "url": "https://missinglink.ai/",
+        "url": "https://missinglink.ai",
         "note": "web: required, ml: required",
     },
     {
@@ -23,7 +23,7 @@ TESTS = [
         "note": "sdk: required, This is where we check if there is a new updated package to install, if this address is not accessible self update of the SDK will not work.",
     },
     {
-        "url": "https://missinglinkai.appspot.com/",
+        "url": "https://missinglinkai.appspot.com",
         "note": "[web, sdk, ml], required for communicating with MissingLink backend.",
     },
     {
@@ -65,14 +65,14 @@ TESTS = [
 
 EXPECT = {
     'https://api.segment.io': {'code': 404, 'result': b'404 page not found\n'},
-    'https://missinglink.ai/': {'code': 200,
+    'https://missinglink.ai': {'code': 200,
                                 'result': b'<!doctype html>\n<html lang="en-US" p'
                                 b'refix="og: htt'},
     'https://missinglink.ai/console/auth': {'code': 200,
                                             'result': b'<!DOCTYPE html>\n<html la'
                                             b'ng="en">\n<head>\n    <tit'
                                             b'le'},
-    'https://missinglinkai.appspot.com/': {'code': 200, 'result': b'ok'},
+    'https://missinglinkai.appspot.com': {'code': 200, 'result': b'ok'},
     'https://nexus-websocket-a.intercom.io': {'code': 404,
                                               'result': b'404 page not found\n'},
     'https://nexus-websocket-b.intercom.io': {'code': 404,
@@ -131,8 +131,9 @@ def main():
     save_results(all_results)
     if any_failed:
         print("*" * 40)
-        print("It seems you have at least one failed network test")
-        print(f"Please send an email to support@missinglink.ai with the {RESULTS_FNAME} file attached.")
+        print("It seems you have at least one failed network test.")
+        print(f"We've generated a file with the test results at '{RESULTS_FNAME}'.")
+        print(f"Please send an email to support@missinglink.ai with the '{RESULTS_FNAME}' file attached.")
         print("*" * 40)
     else:
         print("All network tests have passed successfully.")
