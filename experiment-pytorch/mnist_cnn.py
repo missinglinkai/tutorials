@@ -63,32 +63,6 @@ torch.manual_seed(args.seed)
 if args.cuda:
     torch.cuda.manual_seed(args.seed)
 
-kwargs = {'num_workers': 1, 'pin_memory': True} if args.cuda else {}
-train_loader = torch.utils.data.DataLoader(
-    datasets.MNIST(
-        './data',
-        train=True,
-        download=True,
-        transform=transforms.Compose([
-            transforms.ToTensor(),
-            transforms.Normalize((0.1307, ), (0.3081, ))
-        ])),
-    batch_size=args.batch_size,
-    shuffle=True,
-    **kwargs)
-test_loader = torch.utils.data.DataLoader(
-    datasets.MNIST(
-        './data',
-        train=False,
-        transform=transforms.Compose([
-            transforms.ToTensor(),
-            transforms.Normalize((0.1307, ), (0.3081, ))
-        ])),
-    batch_size=args.test_batch_size,
-    shuffle=True,
-    **kwargs)
-
-
 class Net(nn.Module):
     def __init__(self):
         super(Net, self).__init__()
@@ -106,13 +80,6 @@ class Net(nn.Module):
         x = F.dropout(x, training=self.training)
         x = self.fc2(x)
         return F.log_softmax(x, dim=1)
-
-
-model = Net()
-if args.cuda:
-    model.cuda()
-
-optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum)
 
 
 def train(epoch):
@@ -155,6 +122,38 @@ def test():
             100. * correct / len(test_loader.dataset)))
 
 
+kwargs = {'num_workers': 1, 'pin_memory': True} if args.cuda else {}
+train_loader = torch.utils.data.DataLoader(
+    datasets.MNIST(
+        './data',
+        train=True,
+        download=True,
+        transform=transforms.Compose([
+            transforms.ToTensor(),
+            transforms.Normalize((0.1307, ), (0.3081, ))
+        ])),
+    batch_size=args.batch_size,
+    shuffle=True,
+    **kwargs)
+test_loader = torch.utils.data.DataLoader(
+    datasets.MNIST(
+        './data',
+        train=False,
+        transform=transforms.Compose([
+            transforms.ToTensor(),
+            transforms.Normalize((0.1307, ), (0.3081, ))
+        ])),
+    batch_size=args.test_batch_size,
+    shuffle=True,
+    **kwargs)
+
+model = Net()
+if args.cuda:
+    model.cuda()
+
+optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum)
+
 for epoch in range(1, args.epochs + 1):
     train(epoch)
     test()
+
