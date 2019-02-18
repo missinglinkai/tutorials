@@ -1,6 +1,6 @@
 # MissingLink Tutorials
 
-This repo has a few tutorials and code samples for integrating with the MissingLink SDK.
+This repo is for tutorials and code samples integrating MissingLink.
 
 Check out the reference docs at https://missinglink.ai/docs
 
