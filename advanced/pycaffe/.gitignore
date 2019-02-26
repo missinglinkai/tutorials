@@ -1,0 +1,11 @@
+.idea/
+SegNet/
+py-faster-rcnn/caffe-fast-rcnn/
+/data-augmentation-testing/bvlc_reference_caffenet.caffemodel
+/data-augmentation-testing/102flowers/
+pycaffe-mnist/mnist
+pycaffe-mnist/generate_txts.py
+pycaffe-mnist/train.txt
+pycaffe-mnist/test.txt
+network-in-network/cifar-test-leveldb
+network-in-network/cifar-train-leveldb

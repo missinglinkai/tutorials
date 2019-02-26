@@ -1,0 +1,11 @@
+keras
+tensorflow
+h5py
+scipy
+Pillow
+matplotlib
+missinglink-sdk
+cairocffi
+editdistance
+sklearn
+Theano

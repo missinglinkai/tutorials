@@ -1,0 +1,3 @@
+caffe
+missinglink-sdk
+opencv-python

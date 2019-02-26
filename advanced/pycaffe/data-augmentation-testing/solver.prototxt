@@ -1,0 +1,17 @@
+train_net: "train.prototxt"
+test_net: "val.prototxt"
+test_iter: 10
+test_interval: 5
+base_lr: 0.0010000000475
+display: 1000000
+max_iter: 100000
+lr_policy: "step"
+gamma: 0.10000000149
+momentum: 0.899999976158
+weight_decay: 0.00400000018999
+stepsize: 20000
+snapshot: 500
+snapshot_prefix: "dataAugmentation-None"
+solver_mode: CPU
+iter_size: 1
+type: "SGD"

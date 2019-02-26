@@ -1,0 +1,16 @@
+net: "train_val.prototxt"
+test_iter: 10
+test_interval: 10
+test_initialization: false
+display: 1
+average_loss: 10
+base_lr: 0.01
+lr_policy: "step"
+stepsize: 320000
+gamma: 0.96
+max_iter: 10000000
+momentum: 0.9
+weight_decay: 0.0002
+snapshot: 40000
+snapshot_prefix: ""
+solver_mode: GPU

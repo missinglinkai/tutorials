@@ -1,0 +1,8 @@
+.idea/
+__pycache__/
+*.pyc
+glove.*
+/best_models/mr_best_model_acc_7109.model
+/best_models/mr_best_model_minibatch_acc_7749.model
+/best_models/mr_best_model_acc_6506.model
+/best_models/mr_best_model_acc_6233.model
