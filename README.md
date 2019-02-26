@@ -7,6 +7,10 @@ Check out the reference docs at https://missinglink.ai/docs
 ## Other example and tutorial repositories
 
 * scikit-learn: https://github.com/missinglinkai/sklearn-examples
+* https://github.com/missinglinkai/metadata_examples
+* https://github.com/missinglinkai/missinglink-tensorflow-tutorial1
+* https://github.com/missinglinkai/missinglink-pycaffe-tutorial1
+* https://github.com/missinglinkai/missinglink-keras-tutorial1
 
 ## Imported Repositories
 
