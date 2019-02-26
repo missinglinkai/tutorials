@@ -53,8 +53,6 @@ print(x_test.shape[0], 'test samples')
 y_train = keras.utils.to_categorical(y_train, num_classes)
 y_test = keras.utils.to_categorical(y_test, num_classes)
 
-missinglink_callback = missinglink.KerasCallback(project='5740395606573056')
-
 model = Sequential()
 model.add(Conv2D(32, kernel_size=(3, 3),
                  activation='relu',
@@ -87,6 +85,7 @@ callbacks = [
 # Horovod: save checkpoints only on worker 0 to prevent other workers from corrupting them.
 if hvd.rank() == 0:
     callbacks.append(keras.callbacks.ModelCheckpoint('./checkpoint-{epoch}.h5'))
+    missinglink_callback = missinglink.KerasCallback(project='5740395606573056')
     callbacks.append(missinglink_callback)
 
 model.fit(x_train, y_train,
