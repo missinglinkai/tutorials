@@ -2,6 +2,8 @@
 
 This repo is for examples, tutorials and code samples integrating MissingLink.
 
+Browse the directories, or hit `t` and start typing to jump to an example integration.
+
 Check out the reference docs at https://missinglink.ai/docs
 
 ## Other example and tutorial repositories

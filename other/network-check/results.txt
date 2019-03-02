@@ -1,0 +1,22 @@
+{'https://api.segment.io': {'code': 404, 'result': b'404 page not found\n'},
+ 'https://missinglink.ai': {'code': 200,
+                            'result': b'<!doctype html>\n<html lang="en-US" p'
+                                      b'refix="og: htt'},
+ 'https://missinglink.ai/console/auth': {'code': 200,
+                                         'result': b'<!DOCTYPE html>\n<html la'
+                                                   b'ng="en">\n<head>\n    <tit'
+                                                   b'le'},
+ 'https://missinglinkai.appspot.com': {'code': 200, 'result': b'ok'},
+ 'https://nexus-websocket-a.intercom.io': {'code': 404,
+                                           'result': b'404 page not found\n'},
+ 'https://nexus-websocket-b.intercom.io': {'code': 404,
+                                           'result': b'404 page not found\n'},
+ 'https://pypi.python.org': {'code': 200,
+                             'result': b'\n\n\n\n\n\n\n\n<!DOCTYPE html>\n<htm'
+                                       b'l lang="en">\n  <head>\n'},
+ 'https://rs.fullstory.com': {'code': 404, 'result': b'404 page not found\n'},
+ 'https://s-usc1c-nss-265.firebaseio.com': {'code': 200,
+                                            'result': b'\n<!DOCTYPE html>\n<ht'
+                                                      b'ml lang="en">\n  <hea'
+                                                      b'd>\n  <meta'},
+ 'https://www.googleapis.com': {'code': 404, 'result': b'Not Found'}}
