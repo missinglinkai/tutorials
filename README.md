@@ -6,18 +6,15 @@ Browse the directories, or hit `t` and start typing to jump to an example integr
 
 Check out the reference docs at https://missinglink.ai/docs
 
-## Other example and tutorial repositories
+# The following repositories are now deprecated
 
-* scikit-learn: https://github.com/missinglinkai/sklearn-examples
+Some tutorials and examples used to be found in multiple repositories. They are being consolidated to this `examples` repo.
+
+* https://github.com/missinglinkai/sklearn-examples
 * https://github.com/missinglinkai/metadata_examples
 * https://github.com/missinglinkai/missinglink-tensorflow-tutorial1
 * https://github.com/missinglinkai/missinglink-pycaffe-tutorial1
 * https://github.com/missinglinkai/missinglink-keras-tutorial1
-
-## Imported Repositories
-
-Some tutorials can be found in multiple repositories. They are being consolidated to the examples repo. These are the repos that have already been moved to the `examples` repo.
-
 * https://github.com/missinglinkai/missinglink-keras-example
 * https://github.com/missinglinkai/missinglink-pytorch-example
 * https://github.com/missinglinkai/missinglink-tensorflow-example
