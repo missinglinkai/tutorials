@@ -1,3 +1,4 @@
 /network-check/results.txt
 env/
 *.log
+.idea
