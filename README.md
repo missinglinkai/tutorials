@@ -21,3 +21,7 @@ Some tutorials and examples used to be found in multiple repositories. They are 
 * https://github.com/missinglinkai/missinglink-pycaffe-example
 * https://github.com/missinglinkai/missinglink-pytorch-tutorial1
 * https://github.com/missinglinkai/model-zoo -> `advanced` folder
+
+# Pending migrations
+* https://github.com/missinglinkai/MissingLink-Demo
+* https://github.com/missinglinkai/Dataset-Zoo
