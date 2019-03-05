@@ -25,3 +25,4 @@ Some tutorials and examples used to be found in multiple repositories. They are 
 # Pending migrations
 * https://github.com/missinglinkai/MissingLink-Demo
 * https://github.com/missinglinkai/Dataset-Zoo
+* https://github.com/missinglinkai/metadata_examples
