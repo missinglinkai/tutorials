@@ -4,7 +4,7 @@ This is an example of using scikit learn and integrating missinglink
 """
 
 #import matplotlib.pyplot as plt
-from sklearn.datasets import fetch_openml
+from sklearn.datasets import fetch_openml, get_data_home
 from sklearn.neural_network import MLPClassifier
 
 import missinglink
