@@ -30,5 +30,5 @@ project
 # In case you havn't done this before connect your MissingLink account 
 ml auth init
 
-python mnist.py
+python mnist-logistic.py
 ```
