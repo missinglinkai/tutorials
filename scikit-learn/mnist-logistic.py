@@ -11,7 +11,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.utils import check_random_state
 
-from missinglink import SkLearnProject
+import missinglink
 
 print(__doc__)
 
@@ -46,7 +46,7 @@ clf = LogisticRegression(C=50. / train_samples,
                          penalty='l1', solver='saga', tol=0.1)
 
 print("training")
-project = SkLearnProject()
+project = missinglink.SkLearnProject()
 with project.train(clf) as train:
     clf.fit(X_train, y_train)
     train_score = clf.score(X_train, y_train)
