@@ -6,6 +6,10 @@ This is an example of using scikit learn and integrating missinglink
 from sklearn.datasets import fetch_openml, get_data_home
 from sklearn.neural_network import MLPClassifier
 
+import missinglink
+
+project = missinglink.SkLearnProject()
+
 print(__doc__)
 
 # Load data from https://www.openml.org/d/554
@@ -25,8 +29,8 @@ mlp = MLPClassifier(hidden_layer_sizes=(50,), max_iter=6, alpha=1e-4,
                     learning_rate_init=.1)
 
 print("fit")
-mlp.fit(X_train, y_train)
+with project.train(mlp) as train:
+    mlp.fit(X_train, y_train)
 
 print("Training set score: %f" % mlp.score(X_train, y_train))
 print("Test set score: %f" % mlp.score(X_test, y_test))
-
