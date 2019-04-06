@@ -132,7 +132,7 @@ Now we need to define the different stages of the experiment in a context. Also 
     model.fit(data_train, target_train)
     data_train_pred = model.predict(data_train)
     accuracy = accuracy_score(target_train, data_train_pred)
-+    train.add_metric('accuracy', accuracy)
++   train.add_metric('accuracy', accuracy)
     print("Training set accuracy: %f" % accuracy)
 ```
 
