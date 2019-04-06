@@ -49,24 +49,21 @@ elif model_type == "forest":
     model = ensemble.RandomForestClassifier(n_estimators=20)
 
 project.set_hyperparams(split=split, rotate=rotate)
-print("fit")
 
 with project.train(model) as train:
+    print("fit")
     model.fit(data_train, target_train)
     data_train_pred = model.predict(data_train)
     accuracy = accuracy_score(target_train, data_train_pred)
     train.add_metric('accuracy', accuracy)
     print("Training set accuracy: %f" % accuracy)
 
-print("test")
-class_mapping = {i: str(i) for i in range(10)}
-project.set_properties(class_mapping=class_mapping)
-
 with project.test() as test:
+    print("test")
     data_test_pred = model.predict(data_test)
     accuracy = accuracy_score(target_test, data_test_pred)
     test.add_metric('accuracy', accuracy)
-    print("Test set accuracy: %f" % accuracy)
     test.add_test_data(target_test, data_test_pred)
+    print("Test set accuracy: %f" % accuracy)
     print("Confusion matrix:")
     print(confusion_matrix(target_test, data_test_pred))

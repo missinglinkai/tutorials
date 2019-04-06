@@ -123,14 +123,17 @@ print(__doc__)
 # ...
 ```
 
-Now we need to define the different stages of the experiment in a context:
+Now we need to define the different stages of the experiment in a context. Also we'll report the `accuracy` metric.
 
 ```diff
 # ...
-print("fit")
-+with project.train(mlp) as train:
-    mlp.fit(X_train, y_train)
-# ...
++with project.train(model) as train:
+    print("fit")
+    model.fit(data_train, target_train)
+    data_train_pred = model.predict(data_train)
+    accuracy = accuracy_score(target_train, data_train_pred)
++    train.add_metric('accuracy', accuracy)
+    print("Training set accuracy: %f" % accuracy)
 ```
 
 ## Run the integrated experiment
@@ -159,6 +162,35 @@ Feel free to browse through the different tabs of the experiment you're running 
 
 ---
 
+## Extra feature - confusion matrix and test data
+
+By adding `add_test_data` you'll be able to see a visual, normalized confusion matrix in the `Test` tab of your experiment.
+
+```diff
++with project.test() as test:
+    print("test")
+    data_test_pred = model.predict(data_test)
+    accuracy = accuracy_score(target_test, data_test_pred)
++   test.add_metric('accuracy', accuracy)
++   test.add_test_data(target_test, data_test_pred)
+    print("Test set accuracy: %f" % accuracy)
+    print("Confusion matrix:")
+    print(confusion_matrix(target_test, data_test_pred))
+```
+
+![Confusion matrix](./images/confusion_matrix.png)
+
+## Custom hyperparams
+
+Many hyper parameters are captured automatically by MissingLink such as the model optimizer and parameters. We can record any other hyper parameter using the `set_hyperparams` method.
+
+```diff
+elif model_type == "forest":
+    model = ensemble.RandomForestClassifier(n_estimators=20)
+
++project.set_hyperparams(split=split, rotate=rotate)
+```
+
 ## Commit the code changes
 
 Let's commit our code to the repo. Go to your terminal and run the following commands:
@@ -171,6 +203,6 @@ $ git push
 
 # Summary
 
-This tutorial demonstrated how you take an existing deep learning code sample.
+This tutorial demonstrated how to take an existing scikit learn code sample and integrate MissingLink's SDK with it. Your team now gained experimentation visibility and got a collaboration boost.
 
 To learn more about what you can do, [head to the MissingLink docs](https://missinglink.ai/docs).
