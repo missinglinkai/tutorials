@@ -162,9 +162,25 @@ Feel free to browse through the different tabs of the experiment you're running 
 
 ---
 
-## Extra feature - confusion matrix and test data
+## Confusion matrix and test data
 
-By adding `add_test_data` you'll be able to see a visual, normalized confusion matrix in the `Test` tab of your experiment.
+Though `sklearn` comes with a confusion matrix of its own, it's not that easy to use.
+
+```
+Confusion matrix:
+[[5767    2   23    7    9   14   30    5   42    3]
+ [   0 6632   36   20    8    7   16   12   17    2]
+ [  50   24 5545   66   55    8   51  104   83   13]
+ [  19   26  154 5556   14  102   16   60  112   50]
+ [  13   20   34   14 5403    9   52   19   37  243]
+ [  73   21   20  232   32 4816   89   18   71   78]
+ [  61   20   47    1   62   65 5565    1   38    2]
+ [   9   54  104   26   60    3    0 5838   20  109]
+ [  32   69  105  148   42   82   45   31 5201  126]
+ [  31   31   39   87  191   35   11  133   63 5359]]
+```
+
+By adding `add_test_data` you'll be able to see a visual and normalized confusion matrix in the `Test` tab of your experiment.
 
 ```diff
 +with project.test() as test:
@@ -177,6 +193,8 @@ By adding `add_test_data` you'll be able to see a visual, normalized confusion m
     print("Confusion matrix:")
     print(confusion_matrix(target_test, data_test_pred))
 ```
+
+You can resort the MissingLink visual confusion matrix by top hits, misses, alphabetical or most common instances. It's powerful and we gain many insights from it, you should try it out.
 
 ![Confusion matrix](./images/confusion_matrix.png)
 
