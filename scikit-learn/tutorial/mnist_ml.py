@@ -3,11 +3,10 @@ From: https://scikit-learn.org/stable/auto_examples/neural_networks/plot_mnist_f
 This is an example of using scikit learn and integrating missinglink
 """
 
+import numpy as np
+from sklearn import neural_network, linear_model, ensemble
 from sklearn.datasets import fetch_openml, get_data_home
-from sklearn import neural_network
-from sklearn import linear_model
-from sklearn import ensemble
-from sklearn.metrics import accuracy_score
+from sklearn.metrics import confusion_matrix, accuracy_score
 from skimage.transform import rotate
 
 import missinglink
@@ -20,15 +19,21 @@ print(__doc__)
 print("Loading data")
 print("Data home: {}".format(get_data_home()))
 data, target = fetch_openml('mnist_784', version=1, return_X_y=True)
+rotate = False
 model_type = "forest"
 #model_type = "mlp"
 
 # rescale the data, use the traditional train/test split
 print("Rescaling {} datapoints".format(data.shape))
 data = data / 255.
-split = 60000 # out of 70000
+split = 10000 # out of 70000
 data_train, data_test = data[:split], data[split:]
 target_train, target_test = target[:split], target[split:]
+
+if rotate:
+    print("Adding rotation")
+    data_train = np.append(data_train, [rotate(im.reshape((28, 28)), 90).reshape(784) for im in data_train], axis=0)
+    target_train = np.append(target_train, target_train, axis=0)
 
 print("Instantiating Multi-layer-perceptron")
 if model_type == "mlp":
@@ -41,31 +46,27 @@ if model_type == "mlp":
     random_state=1,
     learning_rate_init=.1)
 elif model_type == "forest":
-    model = ensemble.RandomForestClassifier()
-elif model_type == "linear":
-    model = linear_model.LinearRegression()
+    model = ensemble.RandomForestClassifier(n_estimators=20)
 
-project.set_hyperparams(split=split)
+project.set_hyperparams(split=split, rotate=rotate)
 print("fit")
-
-def str_predictions(array):
-    'Linear models output floats, convert them to int-strings.'
-    if isinstance(array[0], float):
-        return array.astype(int).astype(str)
-    else:
-        return array
 
 with project.train(model) as train:
     model.fit(data_train, target_train)
-    data_train_pred = str_predictions(model.predict(data_train))
+    data_train_pred = model.predict(data_train)
     accuracy = accuracy_score(target_train, data_train_pred)
     train.add_metric('accuracy', accuracy)
     print("Training set accuracy: %f" % accuracy)
 
 print("test")
+class_mapping = {i: str(i) for i in range(10)}
+project.set_properties(class_mapping=class_mapping)
+
 with project.test() as test:
-    data_test_pred = str_predictions(model.predict(data_test))
+    data_test_pred = model.predict(data_test)
     accuracy = accuracy_score(target_test, data_test_pred)
     test.add_metric('accuracy', accuracy)
     print("Test set accuracy: %f" % accuracy)
     test.add_test_data(target_test, data_test_pred)
+    print("Confusion matrix:")
+    print(confusion_matrix(target_test, data_test_pred))
