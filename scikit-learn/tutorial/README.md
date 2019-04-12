@@ -64,7 +64,7 @@ As you can see, the code runs the experiment in a few epochs.
 
 Now, let's see how, by adding a few lines of code and a few commands, we're able to follow the experiment in MissingLink's web dashboard.
 
-## Install and initialize the MissingLink CLI
+## Install and authenticate the MissingLink CLI
 
 MissingLink provides a command line interface (CLI) that allows you to control everything from the terminal.
 
@@ -92,7 +92,7 @@ $ ml auth init
 
 ## Creating a project
 
-MissingLink allows you to manage several projects. Let's create a new project for this tutorial:
+You can create projects and see a list of all your projects on the [MissingLink web dashboard](https://missinglink.ai/console). But MissingLink also allows you to manage projects from the command line. Let's create a new project for this tutorial:
 
 ```bash
 $ ml projects create --display-name tutorials
@@ -101,11 +101,11 @@ $ ml projects create --display-name tutorials
 ---
 **NOTE**
 
-You can see a list of all your projects by running `ml projects list`, or by going to the [MissingLink web dashboard](https://missinglink.ai/console).
+ Run `ml projects list` to list your projects from the command line.
 
 ---
 
-## Create the experiment in MissingLink
+## Create an experiment on MissingLink
 
 Open the `mnist.py` script file, import the MissingLink SDK and instantiate an `SkLearnProject`:
 ```diff
@@ -156,11 +156,13 @@ Choose the **tutorials** project. Your experiment appears.
 ![Experiment in list](./images/tutorial_experiment.png)
 
 ---
-**NOTE**
+**That's it, you're done :)**
 
 Feel free to browse through the different tabs of the experiment you're running and see how the metrics update as the experiment progresses. Check out https://missinglink.ai/docs for more information.
 
 ---
+
+# Next steps
 
 ## Confusion matrix and test data
 
@@ -198,6 +200,29 @@ You can resort the MissingLink visual confusion matrix by top hits, misses, alph
 
 ![Confusion matrix](./images/confusion_matrix.png)
 
+## Custom class names
+You can replace the class names in your confusion matrix using
+`project.set_properties(class_mapping=`. In the case of MNIST it's not too useful,
+but for example when training on Imagenet it's super helpful.
+
+```diff
++ class_mapping = {
++     "0": "zero",
++     "1": "one",
++     "2": "two",
++     "3": "three",
++     "4": "four",
++     "5": "five",
++     "6": "six",
++     "7": "seven",
++     "8": "eight",
++     "9": "nine",
++ }
++ project.set_properties(class_mapping=class_mapping)
+```
+
+![Confusion matrix with class mapping](./images/confusion_matrix_mapped.png)
+
 ## Custom hyperparams
 
 Many hyper parameters are captured automatically by MissingLink such as the model optimizer and parameters. We can record any other hyper parameter using the `set_hyperparams` method.
@@ -208,6 +233,23 @@ elif model_type == "forest":
 
 +project.set_hyperparams(split=split, rotate=rotate)
 ```
+
+## Set a project name and description
+
+You can make it easier for yourself to identify this exact script run by modifying the `display_name` and `description` properties. Consider including a note from the environment variables or command line options. Here we simply include a string.
+
+```diff
+project = missinglink.SkLearnProject()
+
++ # Optional: Name this experiment. `display_name` is always visible in the experiments
++ # table. While the `description` is accessible by clicking the note icon.
++ project.set_properties(
++     display_name="MNIST",
++     description="Using scikit-learn")
+
+```
+
+![Description of experiment in table](./images/display_name.png)
 
 ## Commit the code changes
 

@@ -64,7 +64,7 @@ with project.train(model) as train:
     train.add_metric('accuracy', accuracy)
     print("Training set accuracy: %f" % accuracy)
 
-# Optianl: You can replace the class names in your confusion matrix using
+# Optional: You can replace the class names in your confusion matrix using
 # `set_properties(class_mapping=`. In the case of MNIST it's not too useful,
 # but for example when training on Imagenet it's super helpful.
 class_mapping = {
