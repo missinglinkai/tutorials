@@ -13,6 +13,12 @@ import missinglink
 
 project = missinglink.SkLearnProject()
 
+# Optional: Name this experiment. `display_name` is always visible in the experiments
+# table. While the `description` is accessible by clicking the note icon.
+project.set_properties(
+    display_name="MNIST",
+    description="Using scikit-learn")
+
 print(__doc__)
 
 # Load data from https://www.openml.org/d/554
@@ -57,6 +63,23 @@ with project.train(model) as train:
     accuracy = accuracy_score(target_train, data_train_pred)
     train.add_metric('accuracy', accuracy)
     print("Training set accuracy: %f" % accuracy)
+
+# Optianl: You can replace the class names in your confusion matrix using
+# `set_properties(class_mapping=`. In the case of MNIST it's not too useful,
+# but for example when training on Imagenet it's super helpful.
+class_mapping = {
+    "0": "zero",
+    "1": "one",
+    "2": "two",
+    "3": "three",
+    "4": "four",
+    "5": "five",
+    "6": "six",
+    "7": "seven",
+    "8": "eight",
+    "9": "nine",
+}
+project.set_properties(class_mapping=class_mapping)
 
 with project.test() as test:
     print("test")
